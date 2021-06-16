@@ -1,0 +1,745 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-left">
+    <img src="sagicorlogo.jpg" alt="">
+</div>
+
+<div class="p-3 mb-2 bg-info text-white">SECURITIES TRADE ORDER</div>
+<form class="needs-validation" id="myForm" novalidate action="/Home/GeneratePdf" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-check validate-me position-relative">
+                    <h6>Client Status:</h6>
+                    <input type="radio" class="form-check-input" id="new" name="Client Status" value="New" required>
+                    <label class="form-check-label" for="new">New</label>&nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="existing" name="Client Status" value="Existing" required>
+                    <label class="form-check-label" for="existing">Existing</label>&nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="teammember" name="Client Status" value="Teammember" required>
+                    <label class="form-check-label" for="teammember">Team Member</label>
+                    <div class="invalid-tooltip">
+                        Please select an option.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md">
+                <div class="form-check validate-me position-relative">
+                    <h6>Client Type:</h6>
+                    <input type="radio" class="form-check-input" id="individual" name="Client Type" value="Individual" onclick=togglehomephone() required>
+                    <label class="form-check-label" for="individual">Individual</label>&nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="company" name="Client Type" value="Company" onclick=togglebusinessphone() required>
+                    <label class="form-check-label" for="company">Company</label>
+                    <div class="invalid-tooltip">
+                        Please select an option.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="container" id="pdfContainer">
+        <div class="row">
+            <div class="col-md">
+                <h3>Account information</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Clients' Names:</h6>
+                    <input type="text" class="form-control validate-me" id="name1" name="Client's Name" placeholder="1." required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="name2" name="1st Joint Holder's Name" placeholder="2.">
+                    <input type="text" class="form-control" id="name3" name="2nd Joint Holder's Name" placeholder="3.">
+                    <input type="text" class="form-control" id="name4" name="3rd Joint Holder's Name" placeholder="4.">
+                    <input type="text" class="form-control" id="name5" name="4th Joint Holder's Name" placeholder="5.">
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Tax Registration Number(TRN): </h6>
+                    <input type="text" class="form-control" id="tin1" name="Client's TRN" placeholder="1." required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="tin2" name="1st Joint Holder's TRN" placeholder="2.">
+                    <input type="text" class="form-control" id="tin3" name="2nd Joint Holder's TRN" placeholder="3.">
+                    <input type="text" class="form-control" id="tin4" name="3rd Joint Holder's TRN" placeholder="4.">
+                    <input type="text" class="form-control" id="tin5" name="4th Joint Holder's TRN" placeholder="5.">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>D.O.B/Business Start Date: </h6>
+                    <input type="date" class="form-control" id="dob1" name="D.O.B/Bus.Start date" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="date" class="form-control" id="dob2" name="J1 DOB ">
+                    <input type="date" class="form-control" id="dob3" name="J2 DOB">
+                    <input type="date" class="form-control" id="dob4" name="J3 DOB">
+                    <input type="date" class="form-control" id="dob5" name="J4 DOB">
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Gender:</h6>
+                    <select name="Client's Gender" class="form-select form-control" id="gender1" required>
+                        <option value="">Select gender:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+                <div class="form-group">
+                    <select name="J1 Gender" class="form-select form-control" id="gender2">
+                        <option value="">Select gender:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <select name="J2 Gender" class="form-select form-control" id="gender3">
+                        <option value="">Select gender:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <select name="J3 Gender" class="form-select form-control" id="gender4">
+                        <option value="">Select gender:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+
+                    <select name="J4 Gender" class="form-select form-control" id="gender5">
+                        <option value="">Select gender:</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group validate-me position-relative">
+                    <h6>Address: </h6>
+                    <input type="text" class="form-control" id="address" name="Client's Address" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group validate-me position-relative">
+                    <h6>Email: </h6>
+                    <input type="email" class="form-control" id="emailaddress" name="Email Address" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group validate-me position-relative">
+                    <h6>Branch Code: </h6>
+                    <input type="text" class="form-control" id="branchcode" name="Branch Code" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group validate-me position-relative">
+                    <h6>A/C No: </h6>
+                    <input type="text" class="form-control" id="accnum" name="Account Number" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-group validate-me position-relative">
+                    <h6>CSD A/C No: </h6>
+                    <input type="text" class="form-control" id="csdnum" name="CSD Number" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Home Phone No: </h6>
+                    <input type="text" class="form-control" id="homephone" name="Home Phone">
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Business Phone No: </h6>
+                    <input type="text" class="form-control" id="businessphone" name="Business Phone">
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <h6>Cellular Phone No: </h6>
+                    <input type="text" class="form-control" id="cellphone" name="Cell Phone">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <h3>Details of order</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Security Description: </h6>
+                    <input type="text" class="form-control" id="secdescription" name="Security Descrition" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Nominal Value: </h6>
+                    <input type="text" class="form-control" id="nominal" name="Nominal Value" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group validate-me position-relative">
+                    <h6>Indicitive Price: </h6>
+                    <input type="text" class="form-control" id="iprice" name="Indicitive Price" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    <h6>Instruction: </h6>
+                    <input type="radio" class="form-check-input" id="buy" name="Instruction" value="Buy" onclick=paymentmethod1() required>
+                    <label class="form-check-label" for="buy">Buy</label>&nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="sell" name="Instruction" value="Sell" onclick=paymentmethod2() required>
+                    <label class="form-check-label" for="sell">Sell</label>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class=" col-sm validate-me">
+                <h6>Method of Payment:</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    @*<input type="radio" class="form-check-input" id="foreigndraft" name="paymentmethod" value="foreigndraft">
+                        <label class="form-check-label" for="foreigndraft">Foreign Draft</label>&nbsp &nbsp &nbsp*@
+                    <input type="radio" class="form-check-input" id="cash" name="Payment Method" value="Cash" onclick="deactivateWireField()">
+                    <label class="form-check-label" for="cash">Cash </label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                    <input type="radio" class="form-check-input" id="cheque" name="Payment Method" value="Cheque" onclick="deactivateWireField1()">
+                    <label class="form-check-label" for="cheque">Cheque </label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                    <input type="radio" class="form-check-input" id="debitacc" name="Payment Method" value="Debit A/C" onclick="deactivateWireField2()">
+                    <label class="form-check-label" for="debitacc">Debit Account </label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+
+                    <input type="radio" class="form-check-input" id="creditacc" name="Payment Method" value="Credit A/C" onclick="deactivateWireField3()">
+                    <label class="form-check-label" for="creditacc">Credit Account </label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    <input type="radio" class="form-check-input" id="wiretransfer" name="Payment Method" value="Wire Transfer" onclick="activateWireField()">
+                    <label class="form-check-label" for="wiretransfer">Wire Transfer(please provide bank details)</label>
+                </div>
+                <div class="form-group validate-me position-relative">
+                    <input type="text" class="form-control" id="wiredetails" name="Wire transfer Details" disabled>
+                    @*<input type="radio" class="form-check-input" id="otherpaymentcheck" name="paymentmethod" value="otherpaymentcheck" onclick=activateother()>
+                        <label class="form-check-label" for="otherpaymentcheck">Other</label>
+                        <input type="text" id="otherpaymenttext" name="otherpaymenttext" disabled size="25">*@
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class=" col-sm validate-me"><h6>Source of Funds:</h6></div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    @*<input type="radio" class="form-check-input" id="wire" name="source" value="wire">
+                        <label class="form-check-label" for="wire">Wire</label>&nbsp &nbsp &nbsp
+                        <input type="radio" class="form-check-input" id="draft" name="source" value="draft">
+                        <label class="form-check-label" for="draft"> Draft </label>&nbsp &nbsp &nbsp*@
+                    <input type="radio" class="form-check-input" id="sijaccount" name="Source of Funds" value="SIJ Account" onclick="activateSijSource()">
+                    <label class="form-check-label" for="sijaccount">SIJ A/C#</label>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+                <div class="form-group validate-me position-relative">
+                    <input type="text" class="form-control" id="sijaccnum" name="SIJ A/C number">
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    <input type="radio" class="form-check-input" id="sbjaccount" name="Source of Funds" value="SBJ Account" onclick="activateSbjSource()">
+                    <label class="form-check-label" for="sbjaccount">SBJ A/C# </label>
+                </div>
+                <div class="form-group validate-me position-relative">
+                    <input type="text" class="form-control" id="sbjaccnum" name="SBJ A/C number">
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-check validate-me position-relative">
+                    <input type="radio" class="form-check-input" id="othersourcecheck" name="Source of Funds" value="Other Source" onclick="activateOtherSource()">
+                    <label class="form-check-label" for="othersourcecheck">Other</label>
+                </div>
+                <div class="form-group validate-me position-relative">
+                    <input type="text" class="form-control" id="othersourcetext" name="Other Source Details">
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm validate-me">
+                <h6>Please select one:</h6>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="form-check validate-me position-relative">
+                    <input type="radio" class="form-check-input" id="custody" name="Custody option" value="Custody" required>
+                    <label class="form-check-label" for="custody">Custody</label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="otherbroker" name="Custody option" value="Other Broker" required>
+                    <label class="form-check-label" for="otherbroker">Other Broker</label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="safekeeping" name="Custody option" value="Safekeeping" required>
+                    <label class="form-check-label" for="safekeeping">Safekeeping</label>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+                    <input type="radio" class="form-check-input" id="safekeepingother" name="Custody option" value="Safekeeping Other" required>
+                    <label class="form-check-label" for="safekeepingother">Safekeeping Other</label>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group validate-me position-relative">
+                    <label for="brokerdetails">Broker Details: </label>
+                    <input type="text" class="form-control" id="brokerdetails" name="Broker Details" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div class="form-group">
+                    <label for="otherinstructions">Other Instructions: </label>
+                    <textarea id="otherinstructions" class="form-control" name="Other Instructions"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <p> I hereby request that Sagicor Investments Jamaica Limited (‘Sagicor’) perform the transaction described in this Securities Trade Order on my behalf and in consideration of Sagicor doing so, I hereby acknowledge and agree with Sagicor as follows: (a) that this Securities Trade Order is not a solicitation or recommendation or an offer to buy or sell any securities or product; (b) Sagicor, its affiliated companies, their directors, officers and employees may have a position in or make a market in any securities mentioned above and may act as a broker, investment banker or advisor with respect to such securities or the issuers of such securities; (c) the securities mentioned above may carry with them the risk of loss of all or part of the amount invested, Sagicor shall not be liable to me for any damage incurred or loss suffered by me as a consequence of the purchase or sale of such security; (d) I have consulted my own advisors regarding any tax, accounting or legal implications of the purchase or sale of the above security before making any purchase or sale; (e) I hereby indemnify Sagicor, its affiliated companies, their directors, officers and employees and agree to hold them blameless in respect of any loss or damage which I may suffer as a consequence of Sagicor executing the transaction described in this Securities Trade Order; (f) in the event that the execution of any trade by Sagicor on my behalf should result in a short cash position, I agree to immediately pay to Sagicor such amount as Sagicor may deem necessary to cover such short cash position. I further agree that Sagicor may realise or set-off any funds standing to my credit with Sagicor or any of its affiliates to cover a short cash position which has arisen as a result of Sagicor’s compliance with my instructions and that Sagicor shall have a lien on and shall be entitled to realise any securities standing to my credit which are in Sagicor’s possession, in order to cover any such short cash position; (g) Sagicor may, in its absolute discretion, decline to act on the instructions contained in this Securities Trade Order if Sagicor believes that the transaction is contrary to any law, regulation or any directive of a regulatory body, if I have not funded the transaction or provided information requested by Sagicor or if Sagicor believes that my instructions are unclear, cannot be carried out or may be fraudulent; and (h) Sagicor’s own books and records shall be conclusive evidence of any transaction carried out by Sagicor on my behalf.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md validate-me">
+                <h6>Client's Signature:</h6>
+                <div class="row">
+                    <div class="col-md-2-colwidth">
+                        <canvas title="Create Signature" class="signature_pad" id="signatureCanvas" style="border: 1px solid black;"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" id="BtnData" class="btn btn-outline-secondary" value="Done" />
+                    <input type="button" id="BTnReset" class="btn btn-outline-secondary" value="Reset" />
+                    @*<input type="button" id="BtnUndo" class="btn btn-outline-secondary" value="Undo" />*@
+                    <div class="form-group validate-me position-relative">
+                        @*"HIDDEN" PROPERTY TO BE ADDED TO FIELD*@ <textarea class="form-control" id="SignatureData" name="SignatureData" style="width: 150px;height:100px;" readonly required placeholder="Please Sign in the area above and select Done"></textarea>
+                        <div class="invalid-tooltip">
+                            Required.Please draw signature and click done!
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group validate-me position-relative">
+                   <input type="date" class="form-control" id="clientsigndate" name="Client Signing date" required>
+                    <div class="invalid-tooltip">
+                        Required.
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md">
+                <h6>Joint Holder's Signature:</h6>
+                <div class="row">
+                    <div class="col-md-2-colwidth">
+                        <canvas title="Create Signature" class="signature_pad" id="signatureCanvas1" style="border: 1px solid black;"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" id="BtnData1" class="btn btn-outline-secondary" value="Done" />
+                    <input type="button" id="BTnReset1" class="btn btn-outline-secondary" value="Reset" />
+                    @*<input type="button" id="BtnUndo" class="btn btn-outline-secondary" value="Undo" />*@
+                    <div class="form-group validate-me position-relative">
+                        @*"HIDDEN" PROPERTY TO BE ADDED TO FIELD*@ <textarea class="form-control" id="SignatureData1" name="SignatureData1" style="width: 150px;height:100px;" readonly></textarea>
+                    </div>
+                 </div>
+
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="j1signdate" name="J1 signing date">
+                        <div class="invalid-tooltip">
+                            Required.
+                        </div>
+                    </div>
+
+                </div>
+            <div class="col-md">
+                <h6>Joint Holders's Signature:</h6>
+                <div class="row">
+                    <div class="col-md-2-colwidth">
+                        <canvas title="Create Signature" class="signature_pad" id="signatureCanvas2" style="border: 1px solid black;"></canvas>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="button" id="BtnData2" class="btn btn-outline-secondary" value="Done" />
+                    <input type="button" id="BTnReset2" class="btn btn-outline-secondary" value="Reset" />
+                    @*<input type="button" id="BtnUndo" class="btn btn-outline-secondary" value="Undo" />*@
+                    <div class="form-group">
+                        @*"HIDDEN" PROPERTY TO BE ADDED TO FIELD*@   <textarea class="form-control" id="SignatureData2" name="SignatureData2" style="width: 150px;height:100px;" readonly></textarea>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" id="j2signdate" name="J2 signing date">
+                        <div class="invalid-tooltip">
+                            Required.
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <br />
+    <button type="submit" id="btnPdf" class="btn btn-primary btn-lg">  Submit  </button>
+</form>
+
+@section Scripts{
+    <script>
+    window.addEventListener('load', function () {
+           // Fetch all the forms we want to apply custom Bootstrap validation styles to
+           var forms = document.getElementsByClassName('needs-validation');
+           // Get all form-groups in need of validation
+           var validateGroup = document.getElementsByClassName('validate-me');
+           // Loop over them and prevent submission
+           var validation = Array.prototype.filter.call(forms, function (form) {
+              form.addEventListener('submit', function (event) {
+              if (form.checkValidity() === false) {
+                     event.preventDefault();
+                     event.stopPropagation();
+                       }
+                      //Added validation class to all form-groups in need of validation
+                     for (var i = 0; i < validateGroup.length; i++) {
+                         validateGroup[i].classList.add('was-validated');
+                      }
+                     }, false);
+                  });
+    }, false);
+
+//enable homephone for individual and disable businessphone for business
+    function togglehomephone() {
+        var ind = document.getElementById("individual").checked;
+        if (ind = "true") {
+            document.getElementById("homephone").setAttribute("required", "required");
+            document.getElementById("businessphone").removeAttribute("required");
+            document.getElementById("businessphone").setAttribute("disabled", "disabled");
+            document.getElementById("homephone").removeAttribute("disabled");
+        }
+    };
+
+//disable homephome for individual and enable businessphone for business
+    function togglebusinessphone() {
+        var comp = document.getElementById("company").checked;
+        if (comp = "true") {
+            document.getElementById("businessphone").setAttribute("required", "required");
+            document.getElementById("homephone").removeAttribute("required");
+            document.getElementById("homephone").setAttribute("disabled", "disabled");
+            document.getElementById("businessphone").removeAttribute("disabled");
+        }
+    };
+
+//link buy to source and and sell to method of payment
+    function paymentmethod1() {
+        var buyer = document.getElementById("buy").checked;
+        if (buyer = "true") {
+            document.getElementById("sijaccount").setAttribute("required", "required");
+            document.getElementById("sbjaccount").setAttribute("required", "required");
+            document.getElementById("othersourcecheck").setAttribute("required", "required");
+
+            document.getElementById("cash").removeAttribute("required");
+            document.getElementById("cheque").removeAttribute("required");
+            document.getElementById("debitacc").removeAttribute("required");
+            document.getElementById("creditacc").removeAttribute("required");
+            document.getElementById("wiretransfer").removeAttribute("required");
+            //undo check
+            document.getElementById("cash").checked = false;
+            document.getElementById("cheque").checked = false;
+            document.getElementById("debitacc").checked = false;
+            document.getElementById("creditacc").checked = false;
+            document.getElementById("wiretransfer").checked = false;
+            document.getElementById("wiredetails").value = "";
+            document.getElementById("wiredetails").removeAttribute("required");
+
+            //document.getElementById("wiredetails").removeAttribute("required");
+            @*document.getElementById("wire").removeAttribute("disabled");
+            document.getElementById("draft").removeAttribute("disabled");
+            document.getElementById("othersourcecheck").removeAttribute("disabled");
+            document.getElementById("othersourcetext").removeAttribute("disabled");*@
+        }
+    };
+//link buy to source and and sell to method of payment
+    function paymentmethod2() {
+        var seller = document.getElementById("sell").checked;
+        if (seler = "true") {
+            document.getElementById("cash").setAttribute("required", "required");
+            document.getElementById("cheque").setAttribute("required", "required");
+            document.getElementById("debitacc").setAttribute("required", "required");
+            document.getElementById("creditacc").setAttribute("required", "required");
+            document.getElementById("wiretransfer").setAttribute("required", "required");
+            //document.getElementById("wiredetails").setAttribute("required", "required");
+
+            document.getElementById("sijaccount").removeAttribute("required");
+            document.getElementById("sbjaccount").removeAttribute("required");
+            document.getElementById("othersourcecheck").removeAttribute("required");
+            //fields reset to not required
+            document.getElementById("sijaccnum").removeAttribute("required");
+            document.getElementById("sbjaccnum").removeAttribute("required");
+            document.getElementById("othersourcetext").removeAttribute("required");
+
+            document.getElementById("sijaccount").checked = false;
+            document.getElementById("sbjaccount").checked = false;
+            document.getElementById("othersourcecheck").checked = false;
+            document.getElementById("sijaccnum").value = "";
+            document.getElementById("sbjaccnum").value = "";
+            document.getElementById("othersourcetext").value = "";
+
+            @*document.getElementById("foreigndraft").removeAttribute("disabled");
+            document.getElementById("wiretransfer").removeAttribute("disabled");
+            document.getElementById("otherpaymentcheck").removeAttribute("disabled");
+            document.getElementById("otherpaymenttext").removeAttribute("disabled");*@
+        }
+    };
+//Manage the logics on what fields become required based on the various options selected
+    function activateSijSource() {
+        if (document.getElementById("sijaccount").checked = "true") {
+            document.getElementById("sijaccnum").setAttribute("required", "required");
+            document.getElementById("sijaccnum").disabled = false;
+
+            document.getElementById("sbjaccnum").removeAttribute("required");
+            document.getElementById("sbjaccnum").disabled = true;
+            document.getElementById("othersourcetext").removeAttribute("required");
+            document.getElementById("othersourcetext").disabled = true;
+        }
+    };
+    function activateSbjSource() {
+        if (document.getElementById("sbjaccount").checked = "true") {
+            document.getElementById("sbjaccnum").setAttribute("required", "required");
+            document.getElementById("sbjaccnum").disabled = false;
+
+            document.getElementById("sijaccnum").removeAttribute("required");
+            document.getElementById("sijaccnum").disabled = true;
+            document.getElementById("othersourcetext").removeAttribute("required");
+            document.getElementById("othersourcetext").disabled = true;
+        }
+    };
+    function activateOtherSource() {
+        if (document.getElementById("othersourcecheck").checked = "true") {
+            document.getElementById("othersourcetext").setAttribute("required", "required");
+            document.getElementById("othersourcetext").disabled = false;
+
+            document.getElementById("sijaccnum").removeAttribute("required");
+            document.getElementById("sijaccnum").disabled = true;
+            document.getElementById("sbjaccnum").removeAttribute("required");
+            document.getElementById("sbjaccnum").disabled = true;
+        }
+    };
+    function activateWireField() {
+        if (document.getElementById("wiretransfer").checked = "true") {
+            document.getElementById("wiredetails").setAttribute("required", "required");
+            document.getElementById("wiredetails").disabled = false;
+        }
+    };
+    function deactivateWireField() {
+        if (document.getElementById("cash").checked = "true") {
+            document.getElementById("wiredetails").removeAttribute("required");
+            document.getElementById("wiredetails").disabled =true;
+        }
+    };
+    function deactivateWireField1() {
+        if (document.getElementById("cheque").checked = "true") {
+            document.getElementById("wiredetails").removeAttribute("required");
+            document.getElementById("wiredetails").disabled = true;
+        }
+    };
+    function deactivateWireField2() {
+        if (document.getElementById("debitacc").checked = "true") {
+            document.getElementById("wiredetails").removeAttribute("required");
+            document.getElementById("wiredetails").disabled = true;
+        }
+    };
+    function deactivateWireField3() {
+        if (document.getElementById("creditacc").checked = "true") {
+            document.getElementById("wiredetails").removeAttribute("required");
+            document.getElementById("wiredetails").disabled = true;
+        }
+            };
+
+        $("#btnPdf").click(function () {
+            var form = $("#myForm");
+            //form.validate();
+            $.validator.messages.required = '';
+            if (form.valid() === true) {
+                var FormData = $("#myForm").serialize();
+                //var formdata = JSON.stringify(dataArray);
+                $.ajax(
+                    {
+                        type: "post",
+                        url: "/Home/GeneratePdf",
+                        data: FormData,
+                        dataType: "json"
+                     })
+                //window.open('/Home/GeneratePdf');
+                setTimeout(function () {
+                    window.location.reload(1);
+                }, 5000);
+            }
+           
+            
+           
+        });
+
+//Manages the buttons for Main Clients the signatrue Pad Canvas
+    var ResetData = "";
+    canvas = document.getElementById("signatureCanvas");
+    signaturePad = new SignaturePad(canvas);
+    $("#BTnReset").click(function () {
+        ResetData = signaturePad.toDataURL("image/png", 100);
+        signaturePad.clear();
+        $("#SignatureData").text("");
+    })
+    $("#BtnData").click(function () {
+        $("#SignatureData").text(signaturePad.toDataURL("image/png", 100));
+    })
+    $("#BtnUndo").click(function () {
+        signaturePad.fromDataURL(ResetData);
+        $("#SignatureData").text(signaturePad.toDataURL('image/png', 100));
+    })
+
+ //Manages the buttons for Joint Holder1 the signatrue Pad Canvas
+    var ResetData = "";
+    canvas = document.getElementById("signatureCanvas1");
+    signaturePad1 = new SignaturePad(canvas);
+    $("#BTnReset1").click(function () {
+        ResetData = signaturePad1.toDataURL("image/png", 100);
+        signaturePad1.clear();
+        $("#SignatureData1").text("");
+    })
+    $("#BtnData1").click(function () {
+        $("#SignatureData1").text(signaturePad1.toDataURL("image/png", 100));
+    })
+
+   //Manages the buttons for Joint Holder2 the signatrue Pad Canvas
+    var ResetData = "";
+    canvas = document.getElementById("signatureCanvas2");
+    signaturePad2 = new SignaturePad(canvas);
+    $("#BTnReset2").click(function () {
+        ResetData = signaturePad2.toDataURL("image/png", 100);
+        signaturePad2.clear();
+        $("#SignatureData2").text("");
+    })
+    $("#BtnData2").click(function () {
+        $("#SignatureData2").text(signaturePad2.toDataURL("image/png", 100));
+    })
+    </script>
+}
